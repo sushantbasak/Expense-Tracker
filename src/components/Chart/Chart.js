@@ -5,7 +5,8 @@ import ChartBar from './Chartbar';
 const Chart = (props) => {
   const dataPointsValue = props.dataPoints.map((dataPoint) => dataPoint.value);
 
-  const totalMaximum = Math.max(...dataPointsValue);
+  let totalMaximum = 0;
+  for (const data of dataPointsValue) totalMaximum += data;
 
   return (
     <div className="chart">
