@@ -5,25 +5,26 @@ import ExpenseFilter from './ExpenseFilter';
 import Card from '../UI/Card';
 
 function Expenses(props) {
-  const [enteredYear, setEnteredYear] = useState('2020');
+  const [filteredYear, setFilteredYear] = useState('2020');
 
-  const saveYearHandler = (year) => {
-    setEnteredYear(year);
+  const filterChangeHandler = (year) => {
+    setFilteredYear(year);
   };
 
   return (
-    <div>
-      <ExpenseFilter onSaveYear={saveYearHandler} selected={enteredYear} />
-      <Card className="expenses">
-        {props.items.map((expense) => (
-          <ExpenseItem
-            title={expense.title}
-            amount={expense.amount}
-            date={expense.date}
-          />
-        ))}
-      </Card>
-    </div>
+    <Card className="expenses">
+      <ExpenseFilter
+        onChangeFilter={filterChangeHandler}
+        selected={filteredYear}
+      />
+      {props.items.map((expense) => (
+        <ExpenseItem
+          title={expense.title}
+          amount={expense.amount}
+          date={expense.date}
+        />
+      ))}
+    </Card>
   );
 }
 
